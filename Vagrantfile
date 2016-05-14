@@ -11,6 +11,12 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder ".", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=666"] }
 
     config.vm.provision "shell", inline: <<-SHELL
-
+      sudo apt-get -y update
+      sudo apt-get -y install postgis
+      sudo apt-get -y install postgresql-9.3-postgis-2.1
+      export PGHOST="localhost"
+      export PGUSER="root"
+      export PGPASSWORD="root"
+      psql -d scotchbox -c "CREATE EXTENSION postgis;"
     SHELL
 end
