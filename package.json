@@ -12,5 +12,9 @@
   "bugs": {
     "url": "https://github.com/sketch-city/district-finder/issues"
   },
-  "homepage": "https://github.com/sketch-city/district-finder#readme"
+  "homepage": "https://github.com/sketch-city/district-finder#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "foreman": "1.4.1"
+  }
 }
