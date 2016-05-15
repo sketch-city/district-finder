@@ -1,11 +1,13 @@
 # district-finder
 
 What works so far:
+
 1. get county
 1. get precinct
 1. get all
 
 Left to do:
+
 1. admin interface to make uploading trivial.
 1. Find more data sets!
 
