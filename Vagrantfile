@@ -27,13 +27,13 @@ Vagrant.configure("2") do |config|
       psql -d districtfinder -c "CREATE TABLE precincts;"
 
       # Add test data to server
-      ogr2ogr -f "PostgreSQL" PG:"dbname=districtfinder user=root" "example/harris/precincts2016.geojson" -nln precincts -append
+      ogr2ogr -f "PostgreSQL" PG:"dbname=districtfinder user=root" "example-data/harris/precincts2016.geojson" -nln precincts -append
       psql -d districtfinder -c "update precincts set county='harris' where county is null;"
 
-      ogr2ogr -f "PostgreSQL" PG:"dbname=districtfinder user=root" "example/fort-bend/precincts2016.geojson" -nln precincts -append
+      ogr2ogr -f "PostgreSQL" PG:"dbname=districtfinder user=root" "example-data/fort-bend/precincts2016.geojson" -nln precincts -append
       psql -d districtfinder -c "update precincts set county='fort-bend' where county is null;"
 
-      ogr2ogr -f "PostgreSQL" PG:"dbname=districtfinder user=root" "example/montgomery/precincts2016.geojson" -nln precincts -append
+      ogr2ogr -f "PostgreSQL" PG:"dbname=districtfinder user=root" "example-data/montgomery/precincts2016.geojson" -nln precincts -append
       psql -d districtfinder -c "update precincts set county='montgomery' where county is null;"
     SHELL
 end
