@@ -12,11 +12,16 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "shell", inline: <<-SHELL
       sudo apt-get -y update
+      sudo npm install -g foreman
       sudo apt-get -y install postgis
       sudo apt-get -y install postgresql-9.3-postgis-2.1
+
       export PGHOST="localhost"
       export PGUSER="root"
       export PGPASSWORD="root"
-      psql -d scotchbox -c "CREATE EXTENSION postgis;"
+      psql -d scotchbox -c "CREATE DATABASE districtfinder;"
+      psql -d districtfinder -c "CREATE EXTENSION postgis;"
+
+      shp2pgsql -s EPSG:4326 -d example/harris/precincts2016.shp precincts | psql -d districtfinder
     SHELL
 end
