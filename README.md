@@ -15,7 +15,7 @@ Examples!
 
 Near where I live now and accurate!
 ```
-http://districtfinder.dev:5000/geo/29.7218989/-95.4562183
+http://localhost:5000/geo/29.7218989/-95.4562183
 
 Returns:
 {
@@ -26,7 +26,7 @@ Returns:
 
 Near where I used to live and also accurate!
 ```
-http://districtfinder.dev:5000/geo/29.656784/-95.7359787
+http://localhost:5000/geo/29.656784/-95.7359787
 
 Returns:
 {
@@ -37,7 +37,7 @@ Returns:
 
 Near where my grandma lives, and I guess I can call and ask her if it's right.
 ```
-http://districtfinder.dev:5000/geo/30.3234077/-95.4854002
+http://localhost:5000/geo/30.3234077/-95.4854002
 
 Returns:
 {
