@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
       sudo npm install -g foreman
       sudo apt-get -y install postgis
       sudo apt-get -y install postgresql-9.3-postgis-2.1
+      sudo apt-get -y install gdal-bin
 
       # Database stuff
       export PGHOST="localhost"
