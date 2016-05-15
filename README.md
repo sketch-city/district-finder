@@ -81,7 +81,7 @@ Returns:
 }
 ```
 
-## Run It Locally Yourself With the Sample Data
+## Run It Locally Yourself With the Example Data
 
 This probably works, and I'll test it later.
 
