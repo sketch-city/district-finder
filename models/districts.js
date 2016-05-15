@@ -6,7 +6,7 @@ var Districts = {
     lat = parseFloat(lat);
     lon = parseFloat(lon);
 
-    var q = "SELECT county from precincts where ST_Contains(geom, ST_GeometryFromText('POINT(" + lon + " " + lat + ")', 4326))";
+    var q = "SELECT county from precincts where ST_Contains(wkb_geometry, ST_GeometryFromText('POINT(" + lon + " " + lat + ")', 4326))";
     query(q, cb);
   },
 
@@ -14,7 +14,7 @@ var Districts = {
     lat = parseFloat(lat);
     lon = parseFloat(lon);
 
-    var q = "SELECT precinct from precincts where ST_Contains(geom, ST_GeometryFromText('POINT(" + lon + " " + lat + ")', 4326))";
+    var q = "SELECT precinct from precincts where ST_Contains(wkb_geometry, ST_GeometryFromText('POINT(" + lon + " " + lat + ")', 4326))";
     query(q, cb);
   }
 };
