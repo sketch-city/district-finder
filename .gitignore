@@ -34,3 +34,5 @@ node_modules
 
 # Project files
 .env
+aliases
+uploads

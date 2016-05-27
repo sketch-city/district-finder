@@ -1,1 +1,5 @@
-exports.DistrictsController = require("./districtsController.js");
+var controllers = {
+  DistrictsController: require('./districtsController'),
+};
+
+module.exports = controllers;
