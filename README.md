@@ -30,7 +30,7 @@ Off the top of my head, you could build the following:
 
 * A digital version of the League of Women Voters Voter Guide, but without showing you all the stuff you can't actually vote for (the project I plan on doing next). For the primaries it was 51 pages. It took me 2 hours to get through, and at least half the time was just trying to find what was relevant to me.
 
-## The App
+## The App (This is outdated and will be updated when we hit a real release)
 What works so far:
 
 1. get county
