@@ -12,16 +12,16 @@ var geo = {
    *
    * @param {Object} regionFile - The file object from multer. {@link https://github.com/expressjs/multer}
    *
-   * @todo Validate geojson as a FeatureCollection
-   * @todo Convert shapefiles to geojson if that's what gets uploaded
-   * @todo Reproject to WGS 84 with something like this: {@link https://github.com/perliedman/reproject}
+   * @todo Validate geojson as a FeatureCollection.
+   * @todo Convert shapefiles to geojson if that's what gets uploaded.
+   * @todo Reproject to WGS 84 with something like this: {@link https://github.com/perliedman/reproject}.
    */
   parseRegionFile: function(regionFile) {
     var file = JSON.parse( fs.readFileSync(regionFile.path) );
 
     // Remove the file since we don't need it anymore
     fs.unlinkSync(regionFile.path);
-    
+
     return file;
   },
 

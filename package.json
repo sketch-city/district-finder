@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/sketch-city/district-finder#readme",
   "dependencies": {
+    "bluebird": "^3.4.0",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "knex": "^0.11.3",

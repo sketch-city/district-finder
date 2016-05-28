@@ -1,6 +1,6 @@
 var knex  = require('../db');
 var geo = require('../helpers/geo');
-
+var Promise = require('bluebird');
 
 /**
  * Districts Model
@@ -21,6 +21,7 @@ var Districts = {
 
     var point = { 'point': 'POINT('+lon+' '+lat+')' };
 
+    // Build and run the SQL query
     knex.select('name')
         .from('regions')
         .whereRaw("ST_Contains(geom, ST_GeometryFromText(:point, 4326))", point)
@@ -43,6 +44,8 @@ var Districts = {
    * @param {string}   nameProperty - The column/property name in the shp/geojson file to associate data with.
    * @param {Object}   geojson      - The data from the upload in geojson.
    * @param {function} cb           - The callback to render the view.
+   *
+   * @todo Move the data manipulation into a worker queue.
    */
   addRegion: function(typeId, expiresAt, parentRegion, nameProperty, regionFile, cb) {
 
@@ -50,14 +53,40 @@ var Districts = {
     var uploadsData = {
       'type_id': typeId,
       'expires_at': expiresAt,
-      'parent_region': parentRegion
+      'parent_region': parentRegion || null
     };
 
     // Prepare uploaded shp/geojson for DB
     var geojson = geo.parseRegionFile(regionFile);
     var regionGeoms = geo.geojson2array(geojson, nameProperty);
 
-    cb([uploadsData, regionGeoms]);
+    // Build and run the SQL query
+    knex.transaction(function(trx) {
+      knex.insert(uploadsData, 'id').into('uploads').transacting(trx)
+        .then(function(ids) {
+
+          return Promise.map(regionGeoms, function(regionGeom) {
+            var geom = JSON.stringify(regionGeom.geom);
+
+            var regionData = {
+              'uploads_id': ids[0],
+              'name': regionGeom.name,
+              'geom': knex.raw("ST_SetSRID(ST_Multi(ST_GeomFromGeoJSON(\'"+geom+"\')), 4326)")
+            };
+            return knex.insert(regionData).into('regions').transacting(trx);
+          });
+
+        })
+        .then(trx.commit)
+        .catch(trx.rollback);
+    })
+
+    .then(function(inserts) {
+      cb(inserts);
+    })
+    .catch(function(error) {
+      cb(error);
+    });
   },
 
 
