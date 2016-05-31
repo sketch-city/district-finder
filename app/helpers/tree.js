@@ -47,6 +47,7 @@ var tree = {
     return toplevelNodes;
   },
 
+
   /**
    * Converts an adjacency list to tree format.
    *
@@ -54,40 +55,40 @@ var tree = {
    *
    * @see {@link http://stackoverflow.com/a/21343255}
    */
-  tree2formattedArray: function(elements) {
+  tree2sortedArray: function(elements) {
     var sortedElements = [];
 
-    function formatDepth(text, depth, spacer) {
-      if (depth) {
-        spacer = spacer || " ";
-        var formatted = Array((depth*2) + 1).join(spacer);
-        text = formatted + text;
-      }
-      return text;
-    }
-
+    // Recursion magic?!
     function traverse(elements, depth) {
       for (var i in elements) {
         var element = elements[i];
 
+        // Only do this stuff if it's an object / array of objects
         if (element !== null && typeof(element)=="object") {
 
-            if (!(element instanceof Array)) {
-              var cleanElement = {
-                "name": formatDepth(element.name, depth),
-                "id": element.id
-              };
+          // Just kidding, we don't actually want to do the things in here in arrays of objects
+          if (!(element instanceof Array)) {
 
-              sortedElements.push(cleanElement);
-              depth++;
-            }
+            // Remove junk, add depth attribute
+            var cleanElement = {
+              "name": element.name,
+              "depth": depth,
+              "id": element.id
+            };
 
+            // Add the element to the sorted array
+            sortedElements.push(cleanElement);
+            depth++;
+          }
+
+          // Here is where we go around again
           traverse(element, depth);
           depth--;
         }
       }
     }
 
+    // Start the traversing
     traverse(elements, 0);
 
     return sortedElements;

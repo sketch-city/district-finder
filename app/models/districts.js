@@ -118,7 +118,7 @@ var Districts = {
 
 
   /**
-   * Returns the region types in a sorted, formatted array.
+   * Returns the region types in a sorted array.
    *
    * @param {function} cb - The callback to render the view.
    */
@@ -129,7 +129,7 @@ var Districts = {
     .then(function(regionTypes) {
 
       var regionTree = tree.al2tree(regionTypes, 'name', 'id', 'child_of');
-      var regionArray = tree.tree2formattedArray(regionTree);
+      var regionArray = tree.tree2sortedArray(regionTree);
 
       cb(regionArray);
     })
