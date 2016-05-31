@@ -1,5 +1,6 @@
 var knex  = require('../db');
 var geo = require('../helpers/geo');
+var tree = require('../helpers/tree');
 var Promise = require('bluebird');
 
 /**
@@ -109,6 +110,28 @@ var Districts = {
     knex('region_types').insert(data, 'id')
     .then(function(id) {
       cb(id);
+    })
+    .catch(function(error) {
+      cb(error);
+    });
+  },
+
+
+  /**
+   * Returns the region types in a sorted, formatted array.
+   *
+   * @param {function} cb - The callback to render the view.
+   */
+  getRegionTypes: function(cb) {
+
+    // Build and run the SQL query
+    knex('region_types').select()
+    .then(function(regionTypes) {
+
+      var regionTree = tree.al2tree(regionTypes, 'name', 'id', 'child_of');
+      var regionArray = tree.tree2formattedArray(regionTree);
+
+      cb(regionArray);
     })
     .catch(function(error) {
       cb(error);

@@ -51,6 +51,16 @@ var DistrictsController = {
     Districts.addRegionType(regionName, childOf, function(data) {
       res.send(data);
     });
+  },
+
+
+  /**
+   * Get the region types from the DB.
+   */
+  getRegionTypes: function(req, res) {
+    Districts.getRegionTypes(function(data) {
+      res.send(data);
+    });
   }
 
 

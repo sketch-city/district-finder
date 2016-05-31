@@ -15,7 +15,9 @@ var admin = express.Router();
 
 // Build the routes
 admin.get('/', function(req, res) { res.send('This is the admin home page.'); });
-admin.post('/create/region', upload.single('region_file'), controllers.DistrictsController.addRegion);
-admin.post('/create/region-type', controllers.DistrictsController.addRegionType);
+admin.post('/region', upload.single('region_file'), controllers.DistrictsController.addRegion);
+admin.post('/region-type', controllers.DistrictsController.addRegionType);
+admin.get('/region-types', controllers.DistrictsController.getRegionTypes);
+
 
 module.exports = admin;
