@@ -17,7 +17,7 @@ var tree = {
    *
    * @see {@link http://stackoverflow.com/a/21343255}
    */
-  al2tree: function(elements, name, pk, fk) {
+  al2tree: function(elements, props, pk, fk) {
     var nodes = [];
     var toplevelNodes = [];
     var lookupList = {};
@@ -26,10 +26,17 @@ var tree = {
     for (i = 0; i < elements.length; i++) {
       var element = {
         id: elements[i][pk],
-        name: elements[i][name],
         parent_id: ((elements[i][fk] === null) ? null : elements[i][fk]),
         children: []
       };
+
+      // Make sure we keep the properties we need
+      var j;
+      for (j = 0; j < props.length; j++) {
+        var prop = props[j];
+        element[prop] = elements[i][prop];
+      }
+
       lookupList[element.id] = element;
       nodes.push(element);
       if (element.parent_id === null) {
@@ -55,26 +62,32 @@ var tree = {
    *
    * @see {@link http://stackoverflow.com/a/21343255}
    */
-  tree2sortedArray: function(elements) {
+  tree2sortedArray: function(elements, props) {
     var sortedElements = [];
 
     // Recursion magic?!
     function traverse(elements, depth) {
-      for (var i in elements) {
+      var i;
+      for (i in elements) {
         var element = elements[i];
 
         // Only do this stuff if it's an object / array of objects
         if (element !== null && typeof(element)=="object") {
 
           // Just kidding, we don't actually want to do the things in here in arrays of objects
-          if (!(element instanceof Array)) {
+          // Also some dumb check because datetimes are returned as objects?!
+          if (!(element instanceof Array) && !(i === 'expires_at' || i === 'uploaded_at')) {
+            var cleanElement = {};
+            
+            // Make sure we keep the properties we need
+            var j;
+            for (j = 0; j < props.length; j++) {
+              var prop = props[j];
+              cleanElement[prop] = element[prop];
+            }
 
-            // Remove junk, add depth attribute
-            var cleanElement = {
-              "name": element.name,
-              "depth": depth,
-              "id": element.id
-            };
+            // Add depth
+            _.merge(cleanElement, {"depth": depth});
 
             // Add the element to the sorted array
             sortedElements.push(cleanElement);

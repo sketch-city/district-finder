@@ -48,12 +48,14 @@ var Districts = {
    *
    * @todo Move the data manipulation into a worker queue.
    */
-  addRegion: function(typeId, expiresAt, parentRegion, nameProperty, regionFile, cb) {
+  addRegion: function(uploadName, typeId, expiresAt, parentRegion, nameProperty, regionFile, cb) {
 
     // Build metadata
     var uploadsData = {
+      'upload_name': uploadName,
       'type_id': typeId,
       'expires_at': expiresAt,
+      'file_name': regionFile.originalname,
       'parent_region': parentRegion || null
     };
 
@@ -127,9 +129,34 @@ var Districts = {
     // Build and run the SQL query
     knex('region_types').select()
     .then(function(regionTypes) {
+      var props = ['name', 'id'];
 
-      var regionTree = tree.al2tree(regionTypes, 'name', 'id', 'child_of');
-      var regionArray = tree.tree2sortedArray(regionTree);
+      var regionTree = tree.al2tree(regionTypes, props, 'id', 'child_of');
+      var regionArray = tree.tree2sortedArray(regionTree, props);
+
+      cb(regionArray);
+    })
+    .catch(function(error) {
+      cb(error);
+    });
+  },
+
+
+  /**
+   * Returns the uploads in a sorted array.
+   *
+   * @param {function} cb - The callback to render the view.
+   */
+  getUploads: function(cb) {
+
+    // Build and run the SQL query
+    knex('uploads').join('region_types', {'uploads.type_id': 'region_types.id'})
+    .select('uploads.id as id', 'uploaded_at', 'expires_at', 'file_name', 'upload_name', 'region_types.name as type', 'parent_region')
+    .then(function(uploads) {
+      var props = ['uploaded_at', 'expires_at', 'type', 'type_id', 'id', 'file_name', 'upload_name'];
+
+      var regionTree = tree.al2tree(uploads, props, 'id', 'parent_region');
+      var regionArray = tree.tree2sortedArray(regionTree, props);
 
       cb(regionArray);
     })

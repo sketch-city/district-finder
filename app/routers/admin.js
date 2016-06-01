@@ -18,6 +18,7 @@ admin.get('/', function(req, res) { res.send('This is the admin home page.'); })
 admin.post('/region', upload.single('region_file'), controllers.DistrictsController.addRegion);
 admin.post('/region-type', controllers.DistrictsController.addRegionType);
 admin.get('/region-types', controllers.DistrictsController.getRegionTypes);
+admin.get('/uploads', controllers.DistrictsController.getUploads);
 
 
 module.exports = admin;

@@ -26,6 +26,7 @@ var DistrictsController = {
    * @todo throw an error if no file was uploaded
    */
   addRegion: function(req, res) {
+    var uploadName   = req.body.upload_name;
     var typeId       = req.body.type_id;
     var expiresAt    = req.body.expires_at;
     var parentRegion = req.body.parent_region;
@@ -35,7 +36,7 @@ var DistrictsController = {
     // Did a file actually get uploaded?
     if (req.file) { regionFile = req.file; }
 
-    Districts.addRegion(typeId, expiresAt, parentRegion, nameProperty, regionFile, function(data) {
+    Districts.addRegion(uploadName, typeId, expiresAt, parentRegion, nameProperty, regionFile, function(data) {
       res.send(data);
     });
   },
@@ -59,6 +60,16 @@ var DistrictsController = {
    */
   getRegionTypes: function(req, res) {
     Districts.getRegionTypes(function(data) {
+      res.send(data);
+    });
+  },
+
+
+  /**
+   * Get the uploads list from the DB.
+   */
+  getUploads: function(req, res) {
+    Districts.getUploads(function(data) {
       res.send(data);
     });
   }
