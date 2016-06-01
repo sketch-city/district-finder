@@ -10,6 +10,9 @@ var tree = {
   /**
    * Converts an adjacency list to tree format.
    *
+   * I honestly don't know what this is doing or how the second loop affects topLevelNodes,
+   * but it does and the commenter on stackoverflow knew how and the output is what we need.
+   *
    * @param {array} elements - The array of elements returned from the DB.
    * @param {string} fk - The name of the foreign key.
    * @param {string} pk - The name of the primary key.
@@ -19,7 +22,7 @@ var tree = {
    */
   al2tree: function(elements, props, pk, fk) {
     var nodes = [];
-    var toplevelNodes = [];
+    var topLevelNodes = [];
     var lookupList = {};
 
     var i;
@@ -40,7 +43,7 @@ var tree = {
       lookupList[element.id] = element;
       nodes.push(element);
       if (element.parent_id === null) {
-        toplevelNodes.push(element);
+        topLevelNodes.push(element);
       }
     }
 
@@ -51,7 +54,7 @@ var tree = {
       }
     }
 
-    return toplevelNodes;
+    return topLevelNodes;
   },
 
 
@@ -74,11 +77,11 @@ var tree = {
         // Only do this stuff if it's an object / array of objects
         if (element !== null && typeof(element)=="object") {
 
-          // Just kidding, we don't actually want to do the things in here in arrays of objects
+          // Just kidding, we don't actually want to do the things in this next block in arrays of objects
           // Also some dumb check because datetimes are returned as objects?!
           if (!(element instanceof Array) && !(i === 'expires_at' || i === 'uploaded_at')) {
             var cleanElement = {};
-            
+
             // Make sure we keep the properties we need
             var j;
             for (j = 0; j < props.length; j++) {
