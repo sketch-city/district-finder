@@ -47,6 +47,7 @@ var tree = {
       }
     }
 
+    // What is going on here?! Why does this change topLevelNodes?
     for (i = 0; i < nodes.length; i++) {
       var n = nodes[i];
       if (n.parent_id !== null) {

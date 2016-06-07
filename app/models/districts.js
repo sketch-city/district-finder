@@ -20,6 +20,8 @@ var Districts = {
     lat = parseFloat(lat);
     lon = parseFloat(lon);
 
+    // This format is a little confusing and maybe unnecessary
+    // TODO: see if knex.raw works here?
     var point = { 'point': 'POINT('+lon+' '+lat+')' };
 
     // Build and run the SQL query
