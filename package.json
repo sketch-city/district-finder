@@ -17,9 +17,16 @@
     "bluebird": "^3.4.0",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "hbs": "^4.0.0",
     "knex": "^0.11.3",
     "lodash": "^4.13.1",
     "multer": "^1.1.0",
     "pg": "^4.5.5"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bowercopy": "^1.2.4",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
   }
 }

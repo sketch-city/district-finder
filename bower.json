@@ -1,0 +1,21 @@
+{
+  "name": "district-finder",
+  "description": "A backend and API to look up all of the districts represented by a provided latitude and longitude. National, state, county, city, precinct, etc. data can be uploaded as a shapefile with a provided expiration date.",
+  "main": "app/app.js",
+  "authors": [
+    "Andrew Douglass"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sketch-city/district-finder",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cutestrap": "^1.3.1"
+  }
+}

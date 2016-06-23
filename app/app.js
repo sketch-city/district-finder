@@ -4,7 +4,12 @@ var app = express();
 app.set('port', (process.env.PORT || 8000));
 
 // Static files like CSS/JS/images to make available
-app.use(express.static(__dirname + '/public'));
+app.use('/static', express.static('app/assets'));
+
+// Configure handlebars
+var hbs = require('hbs');
+app.set('view engine', 'hbs');
+app.set('views', 'app/views');
 
 // Handle POST requests with content types application/json and application/x-www-form-urlencoded
 var bodyParser = require('body-parser');

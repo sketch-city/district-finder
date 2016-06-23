@@ -8,6 +8,14 @@ var controllers = require('../controllers');
 var site = express.Router();
 
 // Build the routes
-site.get('/', function(req, res) { res.send("Hello, and welcome to the district finder API website."); });
+site.get('/', function(req, res) {
+  res.locals.title = 'District Finder';
+  res.render('index');
+});
+
+site.get('/example', function(req, res) {
+  res.locals.title = 'Docs Example Page';
+  res.render('example');
+});
 
 module.exports = site;

@@ -1,0 +1,47 @@
+//
+// Variables
+// Things here will overwrite the defaults defined in Cutestrap.
+// -------------------------------------------------------------
+
+////////////
+// Colors //
+////////////
+
+$primary:       #3498db;
+$primary-dark:  #2980b9;
+
+$link:          #4076D4 !default;
+$link--visited: #9140D4 !default;
+$link--hover:   darken($link, 5%) !default;
+$link--active:  #D44076 !default;
+
+// dark shades
+$gray1:         #2c3e50;
+$gray2:         #34495e;
+$gray3:         lighten($gray2, 5%);
+
+// light shades
+$gray4:         #95a5a6;
+$gray5:         #bdc3c7;
+$gray6:         #ecf0f1;
+
+$white:         #ffffff;
+
+
+///////////
+// Fonts //
+///////////
+
+$base-font:       'Avenir', 'Avenir Next','Helvetica Neue','Segoe UI', 'Verdana', sans-serif;
+$monospace-font:  'Consolas', 'Monaco', 'Courier New', monospace;
+$title-font:      'Pacifico', $base-font;
+
+$heading:         $title-font;
+$body:            $base-font !default;
+$monospace:       $monospace-font !default;
+
+$font-size: 1.6rem !default;
+$line-height: 2.4rem !default;
+
+$font-size--small: 1.2rem !default;
+$font-size--large: 2rem !default;

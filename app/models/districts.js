@@ -25,16 +25,18 @@ var Districts = {
     var point = { 'point': 'POINT('+lon+' '+lat+')' };
 
     // Build and run the SQL query
-    knex.select('name')
-        .from('regions')
-        .whereRaw("ST_Contains(geom, ST_GeometryFromText(:point, 4326))", point)
+    knex('regions')
+    .join('uploads', {'uploads.id': 'regions.uploads_id'})
+    .join('region_types', {'region_types.id': 'uploads.type_id'})
+    .select('regions.name as name', 'region_types.name as type')
+    .whereRaw("ST_Contains(geom, ST_GeometryFromText(:point, 4326))", point)
 
-        .then(function(rows) {
-          cb(rows);
-        })
-        .catch(function(error) {
-          cb(error);
-        });
+    .then(function(rows) {
+      cb(rows);
+    })
+    .catch(function(error) {
+      cb(error);
+    });
   },
 
 
@@ -152,7 +154,8 @@ var Districts = {
   getUploads: function(cb) {
 
     // Build and run the SQL query
-    knex('uploads').join('region_types', {'uploads.type_id': 'region_types.id'})
+    knex('uploads')
+    .join('region_types', {'uploads.type_id': 'region_types.id'})
     .select('uploads.id as id', 'uploaded_at', 'expires_at', 'file_name', 'upload_name', 'region_types.name as type', 'parent_region')
     .then(function(uploads) {
       var props = ['uploaded_at', 'expires_at', 'type', 'type_id', 'id', 'file_name', 'upload_name'];

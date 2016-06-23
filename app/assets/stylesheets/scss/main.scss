@@ -1,0 +1,71 @@
+@import "variables";
+@import "cutestrap/cutestrap";
+
+html, body {
+  background-color: $white;
+}
+
+#results {
+  display: none;
+}
+
+#map-container {
+  padding: $line-height 0;
+}
+
+#map, #map-container {
+  height: 300px;
+}
+
+.district-item {
+  background: $primary;
+  color: $gray6;
+  padding: 0;
+  margin: ($line-height / 4) !important;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 700;
+
+
+  .content {
+    padding: ($line-height / 2);
+    display: block;
+  }
+
+  .title {
+    display: block;
+    font-size: $font-size--small;
+    text-transform: uppercase;
+    background: $primary-dark;
+    color: $gray6;
+    padding: ($line-height / 4);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+header {
+  br {
+    @media (max-width: 500px) { display: none; }
+  }
+
+  .logo {
+    text-align: center;
+
+    img {
+      display: inline;
+    }
+  }
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.wrapper-small + .wrapper-small, .wrapper-small + .wrapper, .wrapper-small + .wrapper-large,
+.wrapper + .wrapper-small, .wrapper + .wrapper, .wrapper + .wrapper-large,
+.wrapper-large + .wrapper-small, .wrapper-large + .wrapper, .wrapper-large + .wrapper-large {
+  padding-top: 0;
+}

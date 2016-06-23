@@ -8,7 +8,7 @@ var controllers = require('../controllers');
 var api = express.Router();
 
 // Build the routes
-api.get('/', function(req, res) { res.send("This is the API. Try some other routes."); });
+api.get('/', function(req, res) { res.send("Wait! It's not documented yet. Check out what the example is doing."); });
 api.get('/geo/:lat/:lon', controllers.DistrictsController.allByLatLon);
 
 module.exports = api;
