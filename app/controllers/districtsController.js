@@ -66,6 +66,16 @@ var DistrictsController = {
 
 
   /**
+   * Get the regions from the DB.
+   */
+  getRegions: function(req, res) {
+    Districts.getRegions(function(data) {
+      res.send(data);
+    });
+  },
+
+
+  /**
    * Get the uploads list from the DB.
    */
   getUploads: function(req, res) {

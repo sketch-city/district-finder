@@ -1,0 +1,22 @@
+<table class="table">
+
+  <thead>
+    <tr>
+      <th class="table-number">ID</th>
+      <th>Name</th>
+      <th>Uploaded</th>
+      <th>Expires</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each uploads}}
+      <tr>
+        <td class="table-number">{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{uploaded_at}}</td>
+        <td>{{expires_at}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+
+</table>

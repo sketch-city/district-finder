@@ -20,13 +20,15 @@
     "hbs": "^4.0.0",
     "knex": "^0.11.3",
     "lodash": "^4.13.1",
+    "moment": "^2.15.1",
     "multer": "^1.1.0",
-    "pg": "^4.5.5"
+    "pg": "^6.0.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-bowercopy": "^1.2.4",
     "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2"
   }
 }

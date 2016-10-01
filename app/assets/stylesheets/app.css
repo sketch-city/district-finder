@@ -753,6 +753,17 @@ Styleguide 1.2
   max-width: 640px;
   padding: 2.4rem 2rem; }
 
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column; }
+
+.content {
+  flex: 1; }
+
 html, body {
   background-color: #ffffff; }
 
@@ -798,9 +809,78 @@ header .logo {
 .btn--block {
   width: 100%; }
 
-.wrapper-small + .wrapper-small, .wrapper-small + .wrapper, .wrapper-small + .wrapper-large,
-.wrapper + .wrapper-small, .wrapper + .wrapper, .wrapper + .wrapper-large,
-.wrapper-large + .wrapper-small, .wrapper-large + .wrapper, .wrapper-large + .wrapper-large {
-  padding-top: 0; }
+.wrapper-fluid {
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 2.4rem; }
+
+.wrapper-fluid--short {
+  padding: 1.2rem 2.4rem; }
+
+/**
+ * Admin styles
+ */
+body.admin header {
+  background: #3498db; }
+  body.admin header .logo {
+    text-align: left;
+    font-size: 1.6rem;
+    height: 4.8rem; }
+    body.admin header .logo img {
+      height: 4.8rem; }
+  body.admin header .top-nav > * {
+    float: right; }
+body.admin .btn--link {
+  font-weight: bold;
+  color: #ecf0f1; }
+  body.admin .btn--link:hover {
+    color: #ffffff; }
+body.admin .breadcrumbs {
+  background: #2980b9;
+  color: #ecf0f1;
+  font-weight: bold; }
+body.admin .side-nav {
+  padding-bottom: 2.4rem; }
+  body.admin .side-nav a {
+    font-weight: bold;
+    color: #2c3e50;
+    width: 100%;
+    text-align: left;
+    border-bottom: solid 1px #ecf0f1;
+    white-space: nowrap;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    height: 4.8rem;
+    line-height: 4.8rem;
+    margin: 0 auto;
+    padding: 0;
+    user-select: none;
+    text-decoration: none;
+    transition-property: color, border-bottom-color, padding-left;
+    transition-duration: 200ms; }
+    body.admin .side-nav a:hover {
+      color: #2980b9;
+      border-bottom: solid 2px #2980b9;
+      padding-left: 1rem; }
+body.admin footer {
+  background: #3d566e;
+  color: #ecf0f1; }
+  body.admin footer a {
+    color: #ecf0f1; }
+
+/**
+ * Table Styles
+ */
+table.table td, table.table th {
+  padding: 0.6rem 1.2rem 0.6rem 1.2rem; }
+  table.table td:first-of-type, table.table th:first-of-type {
+    padding-left: 0.6rem; }
+  table.table td:last-of-type, table.table th:last-of-type {
+    padding-right: 0.6rem; }
+table.table thead th {
+  border-bottom: 1px solid #ecf0f1; }
+table.table .table-number {
+  text-align: right; }
 
 /*# sourceMappingURL=app.css.map */

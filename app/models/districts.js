@@ -1,6 +1,6 @@
 var knex  = require('../db');
-var geo = require('../helpers/geo');
-var tree = require('../helpers/tree');
+var geo = require('./helpers/geo');
+var tree = require('./helpers/tree');
 var Promise = require('bluebird');
 
 /**
@@ -147,6 +147,33 @@ var Districts = {
 
 
   /**
+   * Returns the regions in a sorted array.
+   *
+   * @param {function} cb - The callback to render the view.
+   */
+  getRegions: function(cb) {
+
+    // Build and run the SQL query
+    knex('regions')
+    .join('uploads', {'uploads.id': 'regions.uploads_id'})
+    .select(
+      'regions.id as id',
+      'regions.name as name',
+      'uploads.expires_at as expires_at',
+      'uploads.upload_name as upload_name'
+    )
+    .orderBy('uploads.id', 'asc')
+    .orderBy('regions.name', 'asc')
+    .then(function(regions) {
+      cb(regions);
+    })
+    .catch(function(error) {
+      cb(error);
+    });
+  },
+
+
+  /**
    * Returns the uploads in a sorted array.
    *
    * @param {function} cb - The callback to render the view.
@@ -156,9 +183,9 @@ var Districts = {
     // Build and run the SQL query
     knex('uploads')
     .join('region_types', {'uploads.type_id': 'region_types.id'})
-    .select('uploads.id as id', 'uploaded_at', 'expires_at', 'file_name', 'upload_name', 'region_types.name as type', 'parent_region')
+    .select('uploads.id as id', 'uploaded_at', 'expires_at', 'file_name', 'upload_name as name', 'region_types.name as type', 'parent_region')
     .then(function(uploads) {
-      var props = ['uploaded_at', 'expires_at', 'type', 'type_id', 'id', 'file_name', 'upload_name'];
+      var props = ['uploaded_at', 'expires_at', 'type', 'type_id', 'id', 'file_name', 'name'];
 
       var regionTree = tree.al2tree(uploads, props, 'id', 'parent_region');
       var regionArray = tree.tree2sortedArray(regionTree, props);

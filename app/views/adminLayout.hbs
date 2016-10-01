@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{#if title}}
+    <title>{{title}} - District Finder</title>
+  {{else}}
+    <title>District Finder</title>
+  {{/if}}
+
+  <meta name="description" content="District Finder API Admin">
+  <link rel="stylesheet" href="/static/stylesheets/app.css">
+</head>
+
+<body class="admin">
+  <div class="content">
+    <header class="grid grid--medium wrapper-fluid">
+      <div class="logo"><img src="/static/images/logo-admin.png" alt="District Finder" /></div>
+      <nav class="top-nav column--heavy">
+        <a class="btn btn--link" href="#">andrew@dou.glass</a>
+      </nav>
+    </header>
+
+    <div class="breadcrumbs wrapper-fluid wrapper-fluid--short">
+      API Data Admin / {{title}}
+    </div>
+
+    <div class="main wrapper-fluid grid grid--medium">
+
+      <nav class="side-nav column--light">
+        <a href="/admin/regions">Regions</a>
+        <a href="/admin/region-types">Region Types</a>
+        <a href="/admin/uploads">Uploads</a>
+      </nav>
+
+      <div class="column--heavy">
+        {{{body}}}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sticky-footer">
+    <footer class="grid wrapper-fluid">
+      <div class="copyright">Contribute on <a href="https://github.com/sketch-city/district-finder">Github</a></div>
+      <div class="ta-right">A <a href="http://sketchcity.org/">Sketch City</a> project</div>
+    </footer>
+  </div>
+
+  <!-- Include js libraries -->
+  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+  <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+
+
+</body>
+</html>

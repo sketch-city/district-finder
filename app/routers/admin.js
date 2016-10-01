@@ -13,12 +13,15 @@ var controllers = require('../controllers');
 // Create the router object
 var admin = express.Router();
 
-// Build the routes
-admin.get('/', function(req, res) { res.send('This is the admin home page.'); });
+// Routes with views
+admin.get('/', controllers.AdminController.adminRoot);
+admin.get('/regions', controllers.AdminController.regions);
+admin.get('/region-types', controllers.AdminController.regionTypes);
+admin.get('/uploads', controllers.AdminController.uploads);
+
+// Data adding and editing
 admin.post('/region', upload.single('region_file'), controllers.DistrictsController.addRegion);
 admin.post('/region-type', controllers.DistrictsController.addRegionType);
-admin.get('/region-types', controllers.DistrictsController.getRegionTypes);
-admin.get('/uploads', controllers.DistrictsController.getUploads);
 
 
 module.exports = admin;

@@ -9,8 +9,12 @@ var site = express.Router();
 
 // Build the routes
 site.get('/', function(req, res) {
-  res.locals.title = 'District Finder';
   res.render('index');
+});
+
+site.get('/documentation', function(req, res) {
+  res.locals.title = 'Documentation';
+  res.render('documentation');
 });
 
 site.get('/example', function(req, res) {

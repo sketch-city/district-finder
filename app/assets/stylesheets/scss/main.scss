@@ -1,6 +1,19 @@
 @import "variables";
 @import "cutestrap/cutestrap";
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1;
+}
+
 html, body {
   background-color: $white;
 }
@@ -64,8 +77,115 @@ header {
   width: 100%;
 }
 
-.wrapper-small + .wrapper-small, .wrapper-small + .wrapper, .wrapper-small + .wrapper-large,
-.wrapper + .wrapper-small, .wrapper + .wrapper, .wrapper + .wrapper-large,
-.wrapper-large + .wrapper-small, .wrapper-large + .wrapper, .wrapper-large + .wrapper-large {
-  padding-top: 0;
+.wrapper-fluid {
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 2.4rem;
+}
+
+.wrapper-fluid--short {
+  padding: 1.2rem 2.4rem;
+}
+
+
+/**
+ * Admin styles
+ */
+body.admin {
+
+  header {
+    background: $primary;
+    .logo {
+      text-align: left;
+      font-size: $font-size;
+      height: 4.8rem;
+      img {
+        height: 4.8rem;
+      }
+    }
+    .top-nav > * {
+      float: right;
+    }
+  }
+
+  .btn--link {
+    font-weight: bold;
+    color: $gray6;
+    &:hover { color: $white; }
+  }
+
+  .breadcrumbs {
+    background: $primary-dark;
+    color: $gray6;
+    font-weight: bold;
+  }
+
+  .side-nav {
+    padding-bottom: 2.4rem;
+
+    a {
+      font-weight: bold;
+      color: $gray1;
+      width: 100%;
+      text-align: left;
+      border-bottom: solid 1px $gray6;
+      white-space: nowrap;
+
+
+      // Taken from .btn
+      box-sizing: border-box;
+      cursor: pointer;
+      display: inline-block;
+      height: 4.8rem;
+      line-height: 4.8rem;
+      margin: 0 auto;
+      padding: 0;
+      user-select: none;
+      text-decoration: none;
+
+      transition-property: color, border-bottom-color, padding-left;
+      transition-duration: 200ms;
+
+      &:hover {
+        color: $primary-dark;
+        border-bottom: solid 2px $primary-dark;
+        padding-left: 1rem;
+      }
+    }
+  }
+
+  footer {
+    background: $gray3;
+    color: $gray6;
+    a {
+      color: $gray6;
+    }
+  }
+}
+
+/**
+ * Table Styles
+ */
+table.table {
+
+  td, th {
+    padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+
+    &:first-of-type {
+      padding-left: 0.6rem;
+    }
+
+    &:last-of-type {
+      padding-right: 0.6rem;
+    }
+  }
+
+  thead th {
+    border-bottom: 1px solid $gray6;
+  }
+
+  .table-number {
+    text-align: right;
+  }
+
 }

@@ -7,7 +7,7 @@ app.set('port', (process.env.PORT || 8000));
 app.use('/static', express.static('app/assets'));
 
 // Configure handlebars
-var hbs = require('hbs');
+var hbs = require('./handlebars.js');
 app.set('view engine', 'hbs');
 app.set('views', 'app/views');
 
