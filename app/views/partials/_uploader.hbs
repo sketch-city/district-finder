@@ -1,0 +1,38 @@
+<div id="uploader">
+
+  <h3>Add Region</h3>
+  <p>File must be GeoJSON in the EPSG 4326/WGS 84 coordinate system.</p>
+
+  <form action="/admin/region" method="POST" enctype="multipart/form-data">
+
+    <label class="textfield">
+      <input name="upload_name" type="text">
+      <span class="textfield__label">Upload Name</span>
+    </label>
+
+    <label class="select">
+      <select id="type_id" name="type_id">
+        <option disabled="disabled" selected="selected">District Type</option>
+      </select>
+      <span class="select__label" for="select">District Type</span>
+    </label>
+
+    <label class="textfield">
+      <input name="name_property" type="text">
+      <span class="textfield__label">GeoJSON Name Property</span>
+    </label>
+
+    <label class="textfield">
+      <input name="expires_at" type="text">
+      <span class="textfield__label">Expires At (yyyy-mm-dd)</span>
+    </label>
+
+
+    <input type="file" name="region_file" id="region_file" class="inputfile" />
+    <label for="region_file">Choose a File...</label>
+
+
+    <input class="btn--block" type="submit" value="Upload">
+
+  </form>
+</div>

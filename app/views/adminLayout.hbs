@@ -29,9 +29,9 @@
     </div>
 
     <div class="main wrapper-fluid grid grid--medium">
-
       <nav class="side-nav column--light">
-        <button class="btn btn--block">Upload Regions</button>
+        <button id="uploader-btn" class="btn btn--block">Upload Regions</button>
+        {{> _uploader }}
         <a href="/admin/regions">Regions</a>
         <a href="/admin/region-types">Region Types</a>
         <a href="/admin/uploads">Uploads</a>
@@ -55,6 +55,24 @@
   <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
   <script src="http://localhost:35729/livereload.js?snipver=1"></script>
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      // Show uploader on click
+      $('#uploader-btn').click(function() {
+        $('#uploader-btn').hide();
+        $('#uploader').toggle();
+
+        // Get region types for uploader
+        $.getJSON("/api/region-types", function(regionTypes) {
+          $.each(regionTypes, function(index, regionType) {
+            $("#type_id").append('<option value="'+regionType.id+'">'+regionType.name+'</option>');
+          });
+        });
+      });
+
+    });
+  </script>
 
 </body>
 </html>

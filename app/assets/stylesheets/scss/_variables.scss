@@ -7,8 +7,9 @@
 // Colors //
 ////////////
 
-$primary:       #3498db;
-$primary-dark:  #2980b9;
+$primary:        #3498db;
+$primary-dark:   #2980b9;
+$primary-darker: darken(#2980b9, 10%);
 
 $link:          #4076D4 !default;
 $link--visited: #9140D4 !default;

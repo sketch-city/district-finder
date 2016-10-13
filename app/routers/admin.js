@@ -1,8 +1,6 @@
 // Load express
 var express = require('express');
 
-/** @todo add middleware to handle auth before production. */
-
 // Middleware to handle file uploads
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
