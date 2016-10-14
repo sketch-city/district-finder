@@ -11,7 +11,7 @@
       <span class="textfield__label">Address</span>
     </label>
 
-    <input class="btn btn--block disabled" type="submit" value="Find Districts" />
+    <input class="btn btn--block" type="submit" value="Find Districts" />
 
   </form>
 </section>
@@ -36,12 +36,6 @@ $(function() {
   var geocoder = new google.maps.Geocoder();
 
 
-  // Listen for address selection, then turn on the button
-  autocomplete.addListener('place_changed', findPlace);
-  $('#autocomplete').on('blur', findPlace);
-  function findPlace() { $('#district-finder .btn').removeClass('disabled'); }
-
-
   // On submit, geocode and stuff
   $('#district-finder').submit(function(event) {
     event.preventDefault();
@@ -53,7 +47,7 @@ $(function() {
         var coords = results[0].geometry.location;
         getData(coords.toJSON());
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        alert('We couldn\'t find you for the following reason: ' + status);
       }
     });
 
